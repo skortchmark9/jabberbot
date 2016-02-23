@@ -298,7 +298,7 @@ module.exports = function(robot) {
     	msg.reply(reply);
     });
 
-	robot.respond(/who sings (\S+) in (\S+)/i, function(msg){
+	robot.respond(/who sings (\S+) [io]n (\S+)/i, function(msg){
     	// song
     	var part = msg.match[1];
     	var song = msg.match[2];
