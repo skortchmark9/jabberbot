@@ -2,15 +2,18 @@
 //   automatically generate a setlist based on provided members
 //
 // Dependencies:
-//   None
+//   lodash
 //
 // Configuration:
 //   None
 //
 // Commands:
 //   hubot what are the parts for [song] - returns the parts for the following song, if no match returns a list of songs to try
-//   hubot who sings [part] on [song] - 
+//   hubot who sings [part] on [song] - returns who sings what on what song
 // 
+
+
+var _ 	= require('lodash');
 
 var songs = {
 	'Seven': {
@@ -271,14 +274,24 @@ var songs = {
 
 var songNames = Object.keys(songs);
 
+
 module.exports = function(robot) {
 //   hubot setlist name, name, name - returns a list of songs which can be performed with the
 	robot.respond(/setlist (.*)/i, function(msg){
-		// var names = msg.match[1].split(/, ?/);
+		var names = msg.match[1].split(/, ?/);
+		var performable = [];
+
+		_.each(songs, function(song, parts) {
+			var numParts = 0;
+			var performableParts = 0;
+			_.each(parts, function(part, singers) {
+				_.intersection(names, singers);
+			});
+		});
 
 	});
 
-	robot.respond(/what are the parts for (\S+)/i, function(msg){
+	robot.respond(/what are the parts for (\.+)/i, function(msg){
 		var song = msg.match[1];
 
     	if (!(song in songs)) {
