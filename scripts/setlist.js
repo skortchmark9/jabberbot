@@ -288,10 +288,9 @@ module.exports = function(robot) {
 				_.intersection(names, singers);
 			});
 		});
-
 	});
 
-	robot.respond(/what are the parts for (\.+)/i, function(msg){
+	robot.respond(/what are the parts for (.+)/i, function(msg){
 		var song = msg.match[1];
 
     	if (!(song in songs)) {
