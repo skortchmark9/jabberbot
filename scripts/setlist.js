@@ -10,6 +10,7 @@
 // Commands:
 //   hubot what are the parts for [song] - returns the parts for the following song, if no match returns a list of songs to try
 //   hubot who sings [part] on [song] - returns who sings what on what song
+//	 hubot I'm missing rehearsal [when] because [reason]
 // 
 
 
@@ -277,6 +278,7 @@ var songNames = Object.keys(songs);
 
 module.exports = function(robot) {
 //   hubot setlist name, name, name - returns a list of songs which can be performed with the
+/*
 	robot.respond(/setlist (.*)/i, function(msg){
 		var names = msg.match[1].split(/, ?/);
 		var performable = [];
@@ -288,6 +290,13 @@ module.exports = function(robot) {
 				_.intersection(names, singers);
 			});
 		});
+	});
+*/
+
+	robot.respond(/I'?m missing rehearsal ?(.*) because (.+)/i, function(msg) {
+		robot.send({
+			room: '#bottest'
+		}, 'this is a message');
 	});
 
 	robot.respond(/what are the parts for (.+)/i, function(msg){
@@ -311,6 +320,7 @@ module.exports = function(robot) {
     });
 
 	robot.respond(/who sings (\S+) [io]n (\S+)/i, function(msg){
+		console.log(robot, msg);
     	// song
     	var part = msg.match[1];
     	var song = msg.match[2];
@@ -327,5 +337,8 @@ module.exports = function(robot) {
 
     	msg.reply(songs[song][part].join(", "));
     });
+
+
+
 
 }
