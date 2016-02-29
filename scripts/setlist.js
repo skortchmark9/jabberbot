@@ -279,8 +279,8 @@ var songNames = Object.keys(songs);
 module.exports = function(robot) {
 //   hubot setlist name, name, name - returns a list of songs which can be performed with the
 /*
-	robot.respond(/setlist (.*)/i, function(msg){
-		var names = msg.match[1].split(/, ?/);
+	robot.respond(/setlist (.*)/i, function(res){
+		var names = res.match[1].split(/, ?/);
 		var performable = [];
 
 		_.each(songs, function(song, parts) {
@@ -293,17 +293,23 @@ module.exports = function(robot) {
 	});
 */
 
-	robot.respond(/I'?m missing rehearsal ?(.*) because (.+)/i, function(msg) {
+	robot.respond(/I.*m missing rehearsal ?(.*) because (.+)/i, function(res) {
+		var when = res.match[1];
+		var reason = res.match[2];
+
+		var broadcast = res.message.user.name + " is missing rehearsal " + when + " because " + reason;
 		robot.send({
-			room: '#bottest'
-		}, 'this is a message');
+			room: 'officers'
+		}, broadcast);
+
+		res.reply("Got it, thanks " + res.message.user.name);
 	});
 
-	robot.respond(/what are the parts for (.+)/i, function(msg){
-		var song = msg.match[1];
+	robot.respond(/what are the parts for (.+)/i, function(res){
+		var song = res.match[1];
 
     	if (!(song in songs)) {
-    		msg.reply("No such song: " + song + "\nPick one of:\n" + songNames.join('\n'));
+    		res.reply("No such song: " + song + "\nPick one of:\n" + songNames.join('\n'));
     		return;
     	}
 
@@ -316,26 +322,26 @@ module.exports = function(robot) {
 			reply += '\n';
     	});
 
-    	msg.reply(reply);
+    	res.reply(reply);
     });
 
-	robot.respond(/who sings (\S+) [io]n (\S+)/i, function(msg){
-		console.log(robot, msg);
+	robot.respond(/who sings (\S+) [io]n (\S+)/i, function(res){
+		console.log(robot, res);
     	// song
-    	var part = msg.match[1];
-    	var song = msg.match[2];
+    	var part = res.match[1];
+    	var song = res.match[2];
 
     	if (!(song in songs)) {
-    		msg.reply("No such song: " + song + "\nPick one of:\n" + songNames.join('\n'));
+    		res.reply("No such song: " + song + "\nPick one of:\n" + songNames.join('\n'));
     		return;
     	}
 
     	if (!(part in songs[song])) {
-    		msg.reply("No such part. Pick one of:\n" + Object.keys(songs[song]).join('\n'));
+    		res.reply("No such part. Pick one of:\n" + Object.keys(songs[song]).join('\n'));
     		return;
     	}
 
-    	msg.reply(songs[song][part].join(", "));
+    	res.reply(songs[song][part].join(", "));
     });
 
 
