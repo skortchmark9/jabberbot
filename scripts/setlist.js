@@ -210,6 +210,7 @@ var songs = {
 		"Solo" : "RP"
 	},
 	'Brick': {
+		"Solo": ["Robert L"],
 		"T1 Top": [
 		'Reid'
 		],
@@ -240,7 +241,7 @@ var songs = {
 		"Solo" : ["Brendan G"]
 	},
 	'Me and Mrs Jones': {
-		'Solo': ['???'],
+		'Solo': ['Robert L'],
 		'T1 Top': ['Brendan L'],
 		'T1 Bottom': ['Robert P', 'Robert L'],
 		'T2 Top': ['Reid', 'Stephen'],
@@ -260,7 +261,6 @@ var songs = {
 		'Bass': ['???'],
 	},
 	'Aleluia': {
-		'Solo': ['Jesse', 'Stephen'],
 	},
 	'If I Ever': {
 		'Solo': ['Jesse', 'Stephen'],
