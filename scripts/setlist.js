@@ -325,7 +325,7 @@ module.exports = function(robot) {
     	res.reply(reply);
     });
 
-	robot.respond(/who sings (\S+) [io]n (\S+)/i, function(res){
+	robot.respond(/who sings (\S+) [io]n (.+)/i, function(res){
 		console.log(robot, res);
     	// song
     	var part = res.match[1];
