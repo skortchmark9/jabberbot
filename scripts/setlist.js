@@ -302,9 +302,9 @@ module.exports = function(robot) {
 	});
 */
 
-	robot.respond(/I.*m missing rehearsal ?(.*) because (.+)/i, function(res) {
+	robot.respond(/I.*m missing rehearsal ?(.*) (because|for) (.+)/i, function(res) {
 		var when = res.match[1];
-		var reason = res.match[2];
+		var reason = res.match[3];
 
 		var broadcast = res.message.user.name + " is missing rehearsal " + when + " because " + reason;
 		robot.send({
