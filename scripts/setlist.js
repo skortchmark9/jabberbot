@@ -275,6 +275,15 @@ var songs = {
 
 var songNames = Object.keys(songs);
 
+function filtered_keys(obj, filter) {
+  var key, keys = [];
+  for (key in obj) {
+    if (obj.hasOwnProperty(key) && filter.test(key)) {
+      keys.push(key);
+    }
+  }
+  return keys;
+}
 
 module.exports = function(robot) {
 //   hubot setlist name, name, name - returns a list of songs which can be performed with the
@@ -343,8 +352,4 @@ module.exports = function(robot) {
 
     	res.reply(songs[song][part].join(", "));
     });
-
-
-
-
 }
