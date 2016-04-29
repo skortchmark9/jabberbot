@@ -352,4 +352,13 @@ module.exports = function(robot) {
 
     	res.reply(songs[song][part].join(", "));
     });
+
+	robot.respond(/What is (.+)s phone number/i, function(res){
+		var name = res.match[1];
+		name = name.substring(0, name.length - 1);
+		res.reply(name);
+
+	});
+
+
 }
