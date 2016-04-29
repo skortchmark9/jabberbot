@@ -11,6 +11,7 @@
 //   hubot what are the parts for [song] - returns the parts for the following song, if no match returns a list of songs to try
 //   hubot who sings [part] on [song] - returns who sings what on what song
 //	 hubot I'm missing rehearsal [when] because [reason]
+//   hubot wock me
 // 
 
 
@@ -352,4 +353,12 @@ module.exports = function(robot) {
 
     	res.reply(songs[song][part].join(", "));
     });
+
+	function wockMe(res) {
+    	var emoji = [':jesse:', ':joe:', ':bigblondebeautifulbrendan:' ];
+
+    	res.reply(emoji[_.random(emoji.length - 1)]);
+	}
+
+    robot.respond(/wock me/i, wockMe);
 }
