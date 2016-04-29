@@ -361,4 +361,12 @@ module.exports = function(robot) {
 	}
 
     robot.respond(/wock me/i, wockMe);
+
+	robot.respond(/What is (.+)s phone number/i, function(res){
+		var name = res.match[1];
+		name = name.substring(0, name.length - 1);
+		res.reply(name);
+	});
+
+
 }
